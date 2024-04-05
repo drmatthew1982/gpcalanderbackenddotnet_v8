@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 using UserApi.Models;
+using EventApi.Models;
 //using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 
@@ -17,7 +18,8 @@ var connetionString =builder.Configuration.GetConnectionString("MySql");
 builder.Services.AddMySqlDataSource(connetionString!);
 builder.Services.AddDbContext<UserContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddDbContext<EventContext>(opt =>
+    opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
 builder.Services.AddSwaggerGen();
 //var  https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-8.0
 var  MyAllowSpecificOrigins = "AllowAll";

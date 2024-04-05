@@ -254,3 +254,4 @@
 /Users/matthewzhu/Desktop/Matthew/dotnet/gpcalanderbackenddotnet/bin/Debug/net8.0/MySqlConnector.dll
 /Users/matthewzhu/Desktop/Matthew/dotnet/gpcalanderbackenddotnet/bin/Debug/net8.0/MySqlConnector.DependencyInjection.dll
 /Users/matthewzhu/Desktop/Matthew/dotnet/gpcalanderbackenddotnet/bin/Debug/net8.0/Pomelo.EntityFrameworkCore.MySql.dll
+/Users/matthewzhu/Desktop/Matthew/dotnet/gpcalanderbackenddotnet/obj/Debug/net8.0/gpcalanderbackenddotnet.sourcelink.json

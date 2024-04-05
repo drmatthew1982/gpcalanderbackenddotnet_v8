@@ -150,9 +150,7 @@ namespace gpcalanderbackenddotnet.Controllers
             
             var user = await _context.User.Where(user=>user.Username == username).FirstOrDefaultAsync();
             return user.Seckey;
-            
-
-    }
+        }
 
     
        
