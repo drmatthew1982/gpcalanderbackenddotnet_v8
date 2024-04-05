@@ -1,3 +1,8 @@
+This is the c# backend of gpcalendar
+
+used .Net v8
+
+For someone not familiar the v8, here is some notes and tips when I coded it
 https://learn.microsoft.com/zh-cn/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
 
 dotnet run --launch-profile https
