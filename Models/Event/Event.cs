@@ -6,44 +6,50 @@ public class Event
 {
     public long Id { get; set; }
 
-    public string? eventcmt { get; set; }
+    public string? Eventcmt { get; set; }
 
-    public string? client_id { get; set; }
+    public long Client_id { get; set; }
 
-    public string? org_id { get; set; }
+    public long Org_id { get; set; }
 
-    public string? createby { get; set; }
+    public long Created_user_id { get; set; }
 
-    public string? assigned_to { get; set; }
+    public long Assigned_to { get; set; }
 
-    public DateOnly? eventdate { get; set; }
+    public DateOnly Eventdate { get; set; }
 
-    public DateOnly? eventEndDate { get; set; }
+    public DateOnly? EventEndDate { get; set; }
 
-    public string? startTimeStr { get; set; }
+    public string? StartTimeStr { get; set; }
 
-    public string? endTimeStr { get; set; }
+    public string? EndTimeStr { get; set; }
 
-    public string? created_user_id { get; set; }
+    public DateTime? Create_time { get; set; }
 
-    public DateTime? created_time { get; set; }
+    public long? Modified_user_id { get; set; }
 
-    public string? modified_user_id { get; set; }
+    public DateTime? Modified_time { get; set; }
 
-    public DateTime? modified_time { get; set; }
+    public string? ReportStatus { get; set; }
 
-    public string? reportStatus { get; set; }
+    //https://stackoverflow.com/questions/18215376/have-model-contain-field-without-adding-it-to-the-database
+    [NotMapped]
+    public string? Title { get { return Eventcmt; } }
 
-    public string? firstname { get; set; }
+    [NotMapped]
+    public string? Start => Eventdate.ToString("yyyy-MM-dd") + "T" + StartTimeStr;
 
-    public string? middlename { get; set; }
+    [NotMapped]
+    public string? End  => Eventdate.ToString("yyyy-MM-dd")+"T"+EndTimeStr;
 
-    public string? lastname { get; set; }
+    // public string? Firstname { get; set; }
 
-    public string? client_id_no { get; set; }
+    // public string? Middlename { get; set; }
 
-    public string? org_code { get; set; }
+    // public string? Lastname { get; set; }
 
-    public string? org_name { get; set; }
+    // public string? Org_code { get; set; }
+
+    // public string? Org_name { get; set; }
 
 }

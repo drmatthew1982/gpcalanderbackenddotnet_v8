@@ -15,6 +15,8 @@ namespace gpcalanderbackenddotnet.Controllers
     {
         private readonly EventContext _context;
 
+         ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("gpcalanderbackenddotnet-EventController");
+
         public EventController(EventContext context)
         {
             _context = context;
@@ -105,12 +107,15 @@ namespace gpcalanderbackenddotnet.Controllers
         }
         [HttpGet]
         [Route("~/findeventsbyuserid")] 
-        public async  Task<ActionResult<List<Event>>> findClientsByUserId([FromForm] string user_id,[FromForm] DateOnly current_date){
+        public async  Task<ActionResult<List<Event>>> findClientsByUserId([FromQuery(Name = "user_id")] long user_id,[FromQuery(Name = "current_date")] DateOnly current_date){
            //string username  = Request.Form["username"];
            //https://code-maze.com/aspnetcore-pass-parameters-to-http-get-action/
+            DateOnly last_month = current_date.AddMonths(-1);
+            DateOnly next_month = current_date.AddMonths(1);
+            logger.LogInformation(current_date.ToLongDateString());
+            List<Event> eventList= await _context.Event.Where(cevent=>cevent.Created_user_id == user_id && cevent.Eventdate >=last_month && cevent.Eventdate <= next_month).ToListAsync();
             
-            List<Event> eventList= await _context.Event.Where(cevent=>cevent.created_user_id == user_id).ToListAsync();
             return eventList;
         }
-    }
+    } 
 }

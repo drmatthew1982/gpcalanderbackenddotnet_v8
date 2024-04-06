@@ -20,7 +20,7 @@ namespace gpcalanderbackenddotnet.Controllers
         private readonly UserContext _context;
         private readonly MD5 md5 = MD5.Create();
         //https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line
-        ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("Program");
+        ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("gpcalanderbackenddotnet-UserController");
 
         public UserController(UserContext context)
         {
