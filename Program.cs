@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
 using UserApi.Models;
 using EventApi.Models;
 //using Microsoft.Extensions.Configuration;
@@ -11,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
+
 var connetionString =builder.Configuration.GetConnectionString("MySql");
 
 builder.Services.AddMySqlDataSource(connetionString!);

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gpcalanderbackenddotnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a14910c4be4c7daeea22138033c9c1589664270")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1cea46007808da70553c686317ee451b248e3da")]
 [assembly: System.Reflection.AssemblyProductAttribute("gpcalanderbackenddotnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gpcalanderbackenddotnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
