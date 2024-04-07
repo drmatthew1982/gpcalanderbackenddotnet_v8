@@ -233,3 +233,8 @@ bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Features.resources.dll
 bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
 bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll
 bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+
+.fake
+obj/Debug/net8.0/gpcalanderbackenddotnet.AssemblyInfo.cs
+obj/Debug/net8.0/gpcalanderbackenddotnet.AssemblyInfoInputs.cache
+

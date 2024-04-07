@@ -19,7 +19,7 @@ builder.Services.AddDbContext<UserContext>(opt =>
 builder.Services.AddDbContext<EventContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
 builder.Services.AddSwaggerGen();
-//var  https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-8.0
+//  https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-8.0
 var  MyAllowSpecificOrigins = "AllowAll";
 builder.Services.AddCors(options =>
     {
