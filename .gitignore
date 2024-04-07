@@ -253,3 +253,4 @@ obj/gpcalanderbackenddotnet.csproj.nuget.g.props
 obj/gpcalanderbackenddotnet.csproj.nuget.g.targets
 obj/project.assets.json
 obj/project.nuget.cache
+/obj
