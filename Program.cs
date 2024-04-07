@@ -3,6 +3,7 @@ using UserApi.Models;
 using EventApi.Models;
 using ClientApi.Models;
 using OrgnasitionApi.Models;
+using MedicalRecordApi.Models;
 //using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 
@@ -24,6 +25,8 @@ builder.Services.AddDbContext<ClientContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
 builder.Services.AddDbContext<OrgansationContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
+builder.Services.AddDbContext<MedicalRecordContext>(opt =>
+    opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));  
 
 
 builder.Services.AddSwaggerGen();

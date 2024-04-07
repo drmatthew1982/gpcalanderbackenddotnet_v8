@@ -21,6 +21,9 @@ dotnet aspnet-codegenerator controller -name ClientController -async -api -m Cli
 
 dotnet aspnet-codegenerator controller -name OrgansationController -async -api -m Organsation -dc OrgansationContext -outDir Controllers
 
+dotnet aspnet-codegenerator controller -name MedicalRecordController -async -api -m MedicalRecord -dc MedicalRecordContext -outDir Controllers
+
+
 https://www.c-sharpcorner.com/article/asp-net-core-web-api-for-crud-operations-with-mysql/
 https://stackoverflow.com/questions/36187540/asp-net-web-api-with-mysql-database
 ***https://stackoverflow.com/questions/40059929/cannot-find-the-usemysql-method-on-dbcontextoptions
@@ -28,6 +31,7 @@ https://mysqlconnector.net/tutorials/connect-to-mysql/
 https://stackoverflow.com/questions/12545565/find-a-record-in-dbset-using-find-without-a-primary-key
 **https://learn.microsoft.com/en-us/ef/ef6/querying/
 https://stackoverflow.com/questions/70273434/unable-to-resolve-service-for-type-%C2%A8microsoft-entityframeworkcore-dbcontextopti
+https://learn.microsoft.com/en-us/ef/core/modeling/relationships/many-to-many
 
 
 //dotnet different route for method
