@@ -9,5 +9,5 @@ public class MedicalRecordContext : DbContext
     {
     }
 
-    public DbSet<MedicalRecord> Event { get; set; } = null!;
+    public DbSet<MedicalRecord> MedicalRecord { get; set; } = null!;
 }

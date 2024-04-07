@@ -32,6 +32,7 @@ https://stackoverflow.com/questions/12545565/find-a-record-in-dbset-using-find-w
 **https://learn.microsoft.com/en-us/ef/ef6/querying/
 https://stackoverflow.com/questions/70273434/unable-to-resolve-service-for-type-%C2%A8microsoft-entityframeworkcore-dbcontextopti
 https://learn.microsoft.com/en-us/ef/core/modeling/relationships/many-to-many
+https://stackoverflow.com/questions/39672601/entity-framework-core-include-many-to-many-related-objects-in-webapi
 
 
 //dotnet different route for method

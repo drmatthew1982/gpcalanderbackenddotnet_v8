@@ -14,6 +14,8 @@ namespace gpcalanderbackenddotnet.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ClientContext _context;
+        ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("gpcalanderbackenddotnet-UserController");
+
 
         public ClientController(ClientContext context)
         {
@@ -24,14 +26,14 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetEvent()
         {
-            return await _context.Event.ToListAsync();
+            return await _context.Client.ToListAsync();
         }
 
         // GET: api/Client/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(long id)
         {
-            var client = await _context.Event.FindAsync(id);
+            var client = await _context.Client.FindAsync(id);
 
             if (client == null)
             {
@@ -77,7 +79,7 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
-            _context.Event.Add(client);
+            _context.Client.Add(client);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetClient", new { id = client.Id }, client);
@@ -87,13 +89,13 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(long id)
         {
-            var client = await _context.Event.FindAsync(id);
+            var client = await _context.Client.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
             }
 
-            _context.Event.Remove(client);
+            _context.Client.Remove(client);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +103,15 @@ namespace gpcalanderbackenddotnet.Controllers
 
         private bool ClientExists(long id)
         {
-            return _context.Event.Any(e => e.Id == id);
+            return _context.Client.Any(e => e.Id == id);
+        }
+        [HttpGet]
+        [Route("~/findclientbyuserid")] 
+        public async  Task<ActionResult<List<Client>>> findClientsByUserId([FromQuery(Name = "user_id")] long user_id){
+            //string username  = Request.Form["username"];
+            List<Client> clientList= await _context.Client.Where(client=>client.Created_user_id == user_id).ToListAsync();
+            
+            return clientList;
         }
     }
 }

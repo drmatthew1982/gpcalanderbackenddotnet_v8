@@ -24,14 +24,14 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Organsation>>> GetEvent()
         {
-            return await _context.Event.ToListAsync();
+            return await _context.Organsation.ToListAsync();
         }
 
         // GET: api/Organsation/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Organsation>> GetOrgansation(long id)
         {
-            var organsation = await _context.Event.FindAsync(id);
+            var organsation = await _context.Organsation.FindAsync(id);
 
             if (organsation == null)
             {
@@ -77,7 +77,7 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         public async Task<ActionResult<Organsation>> PostOrgansation(Organsation organsation)
         {
-            _context.Event.Add(organsation);
+            _context.Organsation.Add(organsation);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOrgansation", new { id = organsation.Id }, organsation);
@@ -87,13 +87,13 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrgansation(long id)
         {
-            var organsation = await _context.Event.FindAsync(id);
+            var organsation = await _context.Organsation.FindAsync(id);
             if (organsation == null)
             {
                 return NotFound();
             }
 
-            _context.Event.Remove(organsation);
+            _context.Organsation.Remove(organsation);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace gpcalanderbackenddotnet.Controllers
 
         private bool OrgansationExists(long id)
         {
-            return _context.Event.Any(e => e.Id == id);
+            return _context.Organsation.Any(e => e.Id == id);
         }
     }
 }

@@ -24,14 +24,14 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MedicalRecord>>> GetEvent()
         {
-            return await _context.Event.ToListAsync();
+            return await _context.MedicalRecord.ToListAsync();
         }
 
         // GET: api/MedicalRecord/5
         [HttpGet("{id}")]
         public async Task<ActionResult<MedicalRecord>> GetMedicalRecord(long id)
         {
-            var medicalRecord = await _context.Event.FindAsync(id);
+            var medicalRecord = await _context.MedicalRecord.FindAsync(id);
 
             if (medicalRecord == null)
             {
@@ -77,7 +77,7 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         public async Task<ActionResult<MedicalRecord>> PostMedicalRecord(MedicalRecord medicalRecord)
         {
-            _context.Event.Add(medicalRecord);
+            _context.MedicalRecord.Add(medicalRecord);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMedicalRecord", new { id = medicalRecord.Id }, medicalRecord);
@@ -87,13 +87,13 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMedicalRecord(long id)
         {
-            var medicalRecord = await _context.Event.FindAsync(id);
+            var medicalRecord = await _context.MedicalRecord.FindAsync(id);
             if (medicalRecord == null)
             {
                 return NotFound();
             }
 
-            _context.Event.Remove(medicalRecord);
+            _context.MedicalRecord.Remove(medicalRecord);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace gpcalanderbackenddotnet.Controllers
 
         private bool MedicalRecordExists(long id)
         {
-            return _context.Event.Any(e => e.Id == id);
+            return _context.MedicalRecord.Any(e => e.Id == id);
         }
     }
 }

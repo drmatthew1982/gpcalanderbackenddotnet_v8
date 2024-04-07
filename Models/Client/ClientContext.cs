@@ -9,5 +9,5 @@ public class ClientContext : DbContext
     {
     }
 
-    public DbSet<Client> Event { get; set; } = null!;
+    public DbSet<Client> Client { get; set; } = null!;
 }
