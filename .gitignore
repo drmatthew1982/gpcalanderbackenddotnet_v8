@@ -238,3 +238,18 @@ bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 obj/Debug/net8.0/gpcalanderbackenddotnet.AssemblyInfo.cs
 obj/Debug/net8.0/gpcalanderbackenddotnet.AssemblyInfoInputs.cache
 
+obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+obj/Debug/net8.0/gpcalanderbackenddotnet.assets.cache
+obj/Debug/net8.0/gpcalanderbackenddotnet.csproj.AssemblyReference.cache
+obj/Debug/net8.0/gpcalanderbackenddotnet.csproj.CoreCompileInputs.cache
+obj/Debug/net8.0/gpcalanderbackenddotnet.csproj.FileListAbsolute.txt
+obj/Debug/net8.0/gpcalanderbackenddotnet.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net8.0/gpcalanderbackenddotnet.GlobalUsings.g.cs
+obj/Debug/net8.0/gpcalanderbackenddotnet.MvcApplicationPartsAssemblyInfo.cache
+obj/Debug/net8.0/gpcalanderbackenddotnet.MvcApplicationPartsAssemblyInfo.cs
+obj/Debug/net8.0/gpcalanderbackenddotnet.sourcelink.json
+obj/gpcalanderbackenddotnet.csproj.nuget.dgspec.json
+obj/gpcalanderbackenddotnet.csproj.nuget.g.props
+obj/gpcalanderbackenddotnet.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
