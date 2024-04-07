@@ -17,6 +17,10 @@ dotnet aspnet-codegenerator controller -name UserController -async -api -m User 
 
 dotnet aspnet-codegenerator controller -name EventController -async -api -m Event -dc EventContext -outDir Controllers
 
+dotnet aspnet-codegenerator controller -name ClientController -async -api -m Client -dc ClientContext -outDir Controllers
+
+dotnet aspnet-codegenerator controller -name OrgansationController -async -api -m Organsation -dc OrgansationContext -outDir Controllers
+
 https://www.c-sharpcorner.com/article/asp-net-core-web-api-for-crud-operations-with-mysql/
 https://stackoverflow.com/questions/36187540/asp-net-web-api-with-mysql-database
 ***https://stackoverflow.com/questions/40059929/cannot-find-the-usemysql-method-on-dbcontextoptions

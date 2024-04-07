@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using UserApi.Models;
 using EventApi.Models;
+using ClientApi.Models;
+using OrgnasitionApi.Models;
 //using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 
@@ -18,6 +20,12 @@ builder.Services.AddDbContext<UserContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));
 builder.Services.AddDbContext<EventContext>(opt =>
     opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
+builder.Services.AddDbContext<ClientContext>(opt =>
+    opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
+builder.Services.AddDbContext<OrgansationContext>(opt =>
+    opt.UseMySql(connetionString,ServerVersion.AutoDetect(connetionString)));    
+
+
 builder.Services.AddSwaggerGen();
 //  https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-8.0
 var  MyAllowSpecificOrigins = "AllowAll";
