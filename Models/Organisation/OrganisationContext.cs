@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace OrgnasitionApi.Models;
+namespace OrganisitionApi.Models;
 
-public class OrgansationContext : DbContext
+public class OrganisationContext : DbContext
 {
-    public OrgansationContext(DbContextOptions<OrgansationContext> options)
+    public OrganisationContext(DbContextOptions<OrganisationContext> options)
         : base(options)
     {
     }
 
-    public DbSet<Organsation> Organsation { get; set; } = null!;
+    public DbSet<Organisation> Organisation { get; set; } = null!;
 }

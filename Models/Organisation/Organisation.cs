@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
-namespace OrgnasitionApi.Models;
+namespace OrganisitionApi.Models;
 
 [Table("organisations")]
-public class Organsation
+public class Organisation
 {
     public long Id { get; set; }
 

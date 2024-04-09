@@ -5,53 +5,53 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OrgnasitionApi.Models;
+using OrganisitionApi.Models;
 
 namespace gpcalanderbackenddotnet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrgansationController : ControllerBase
+    public class organisationController : ControllerBase
     {
-        private readonly OrgansationContext _context;
+        private readonly OrganisationContext _context;
 
-        public OrgansationController(OrgansationContext context)
+        public organisationController(OrganisationContext context)
         {
             _context = context;
         }
 
-        // GET: api/Organsation
+        // GET: api/organisation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Organsation>>> GetEvent()
+        public async Task<ActionResult<IEnumerable<Organisation>>> GetEvent()
         {
-            return await _context.Organsation.ToListAsync();
+            return await _context.Organisation.ToListAsync();
         }
 
-        // GET: api/Organsation/5
+        // GET: api/organisation/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Organsation>> GetOrgansation(long id)
+        public async Task<ActionResult<Organisation>> Getorganisation(long id)
         {
-            var organsation = await _context.Organsation.FindAsync(id);
+            var organisation = await _context.Organisation.FindAsync(id);
 
-            if (organsation == null)
+            if (organisation == null)
             {
                 return NotFound();
             }
 
-            return organsation;
+            return organisation;
         }
 
-        // PUT: api/Organsation/5
+        // PUT: api/organisation/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrgansation(long id, Organsation organsation)
+        public async Task<IActionResult> PutOrganisation(long id, Organisation organisation)
         {
-            if (id != organsation.Id)
+            if (id != organisation.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(organsation).State = EntityState.Modified;
+            _context.Entry(organisation).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace gpcalanderbackenddotnet.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrgansationExists(id))
+                if (!organisationExists(id))
                 {
                     return NotFound();
                 }
@@ -72,44 +72,44 @@ namespace gpcalanderbackenddotnet.Controllers
             return NoContent();
         }
 
-        // POST: api/Organsation
+        // POST: api/organisation
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Organsation>> PostOrgansation(Organsation organsation)
+        public async Task<ActionResult<Organisation>> Postorganisation(Organisation organisation)
         {
-            _context.Organsation.Add(organsation);
+            _context.Organisation.Add(organisation);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrgansation", new { id = organsation.Id }, organsation);
+            return CreatedAtAction("Getorganisation", new { id = organisation.Id }, organisation);
         }
 
-        // DELETE: api/Organsation/5
+        // DELETE: api/organisation/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrgansation(long id)
+        public async Task<IActionResult> Deleteorganisation(long id)
         {
-            var organsation = await _context.Organsation.FindAsync(id);
-            if (organsation == null)
+            var organisation = await _context.Organisation.FindAsync(id);
+            if (organisation == null)
             {
                 return NotFound();
             }
 
-            _context.Organsation.Remove(organsation);
+            _context.Organisation.Remove(organisation);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool OrgansationExists(long id)
+        private bool organisationExists(long id)
         {
-            return _context.Organsation.Any(e => e.Id == id);
+            return _context.Organisation.Any(e => e.Id == id);
         }
         [HttpGet]
         [Route("~/findorgbyuserid")] 
-        public async  Task<ActionResult<List<Organsation>>> findClientsByUserId([FromQuery(Name = "created_user_id")] long user_id){
+        public async  Task<ActionResult<List<Organisation>>> findClientsByUserId([FromQuery(Name = "created_user_id")] long user_id){
             //string username  = Request.Form["username"];
-            List<Organsation> clientList= await _context.Organsation.Where(client=>client.Created_user_id == user_id).ToListAsync();
+            List<Organisation> organisList= await _context.Organisation.Where(client=>client.Created_user_id == user_id).ToListAsync();
             
-            return clientList;
+            return organisList;
         }
     }
 }
