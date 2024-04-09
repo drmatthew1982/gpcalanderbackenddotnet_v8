@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace OrgnasitionApi.Models;
 
-[Table("organsations")]
+[Table("organisations")]
 public class Organsation
 {
     public long Id { get; set; }

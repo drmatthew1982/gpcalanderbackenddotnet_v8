@@ -103,5 +103,13 @@ namespace gpcalanderbackenddotnet.Controllers
         {
             return _context.Organsation.Any(e => e.Id == id);
         }
+        [HttpGet]
+        [Route("~/findorgbyuserid")] 
+        public async  Task<ActionResult<List<Organsation>>> findClientsByUserId([FromQuery(Name = "created_user_id")] long user_id){
+            //string username  = Request.Form["username"];
+            List<Organsation> clientList= await _context.Organsation.Where(client=>client.Created_user_id == user_id).ToListAsync();
+            
+            return clientList;
+        }
     }
 }
