@@ -14,6 +14,7 @@ namespace gpcalanderbackenddotnet.Controllers
     public class organisationController : ControllerBase
     {
         private readonly OrganisationContext _context;
+        ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("gpcalanderbackenddotnet-UserController");
 
         public organisationController(OrganisationContext context)
         {
@@ -107,9 +108,36 @@ namespace gpcalanderbackenddotnet.Controllers
         [Route("~/findorgbyuserid")] 
         public async  Task<ActionResult<List<Organisation>>> findClientsByUserId([FromQuery(Name = "created_user_id")] long user_id){
             //string username  = Request.Form["username"];
-            List<Organisation> organisList= await _context.Organisation.Where(client=>client.Created_user_id == user_id).ToListAsync();
-            
+            List<Organisation> organisList= await _context.Organisation.Where(org=>org.Created_user_id == user_id).ToListAsync();
             return organisList;
+        }
+        [HttpPost]
+        [Route("~/createorg")] 
+        public async  Task<IActionResult> createorg(Organisation organisation){
+     
+            List<Organisation> organisList= await _context.Organisation.Where(
+                        org=>org.Created_user_id == organisation.Created_user_id).Where(
+                        org=>org.Org_code == organisation.Org_code).ToListAsync();
+            if(organisList.Count()>0){
+                return Conflict();
+            }else{
+                organisation.Created_time = DateTime.Now;
+                organisation.Modified_time = DateTime.Now;
+                organisation.Modified_user_id = organisation.Created_user_id;
+                await Postorganisation(organisation);
+                return Ok();
+            }
+           
+        }
+         [HttpPost]
+        [Route("~/updateorg")] 
+        public async  Task<IActionResult> updateorg(Organisation organisation){
+                Organisation updatedorg= await _context.Organisation.Where(org=>org.Id == organisation.Id).FirstOrDefaultAsync();
+                updatedorg.Org_name = organisation.Org_name;
+                updatedorg.Modified_time = DateTime.Now;
+                updatedorg.Modified_user_id = organisation.Modified_user_id;
+                await PutOrganisation(updatedorg.Id,updatedorg);
+                return Ok();
         }
     }
 }
