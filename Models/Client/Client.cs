@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.SignalR.Protocol;
 namespace ClientApi.Models;
 
 [Table("clients")]
@@ -8,7 +9,7 @@ public class Client
 
     public string? Firstname { get; set; }
 
-    public string? Middlename { get; set; }
+    public string? Middlename { get ; set; }
 
     public string? Lastname { get; set; }
 
@@ -23,6 +24,7 @@ public class Client
     public DateTime? Birthday { get; set; }
     
     public string? Gender { get; set; }
-    public string? Client_id_number { get; set; }
+    
+    public string? Client_id_no { get; set; }
 
 }

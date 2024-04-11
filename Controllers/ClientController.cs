@@ -106,12 +106,44 @@ namespace gpcalanderbackenddotnet.Controllers
             return _context.Client.Any(e => e.Id == id);
         }
         [HttpGet]
-        [Route("~/findclientbyuserid")] 
+        [Route("~/findclientsbyuserid")] 
         public async  Task<ActionResult<List<Client>>> findClientsByUserId([FromQuery(Name = "user_id")] long user_id){
             //string username  = Request.Form["username"];
+            logger.LogInformation("===="+user_id);
             List<Client> clientList= await _context.Client.Where(client=>client.Created_user_id == user_id).ToListAsync();
             
             return clientList;
+        }
+
+        [HttpPost]
+        [Route("~/createclient")] 
+        public async  Task<IActionResult> createoclient(Client client){
+     
+            List<Client> organisList= await _context.Client.Where(
+                        clt=>clt.Created_user_id == client.Created_user_id).Where(
+                        clt=>clt.Client_id_no == client.Client_id_no).ToListAsync();
+            if(organisList.Count()>0){
+                return Conflict();
+            }else{
+                client.Created_time = DateTime.Now;
+                client.Modified_time = DateTime.Now;
+                client.Modified_user_id = client.Created_user_id;
+                await PostClient(client);
+                return Ok();
+            }
+        }
+        [HttpPost]
+        [Route("~/updateclient")] 
+        public async  Task<IActionResult> updateclient(Client client){
+                Client updateclient= await _context.Client.Where(org=>org.Id == client.Id).FirstOrDefaultAsync();
+                updateclient.Firstname = client.Firstname;
+                updateclient.Middlename = client.Middlename;
+                updateclient.Lastname = client.Lastname;
+                updateclient.Birthday = client.Birthday;
+                updateclient.Gender = client.Gender;
+                updateclient.Modified_time = DateTime.Now;
+                updateclient.Modified_user_id = client.Modified_user_id;
+                return await PutClient(updateclient.Id,updateclient);
         }
     }
 }

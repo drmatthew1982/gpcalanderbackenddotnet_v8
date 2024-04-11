@@ -129,7 +129,7 @@ namespace gpcalanderbackenddotnet.Controllers
             }
            
         }
-         [HttpPost]
+        [HttpPost]
         [Route("~/updateorg")] 
         public async  Task<IActionResult> updateorg(Organisation organisation){
                 Organisation updatedorg= await _context.Organisation.Where(org=>org.Id == organisation.Id).FirstOrDefaultAsync();
