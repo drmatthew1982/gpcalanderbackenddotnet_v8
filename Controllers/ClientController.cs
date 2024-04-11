@@ -109,7 +109,6 @@ namespace gpcalanderbackenddotnet.Controllers
         [Route("~/findclientsbyuserid")] 
         public async  Task<ActionResult<List<Client>>> findClientsByUserId([FromQuery(Name = "user_id")] long user_id){
             //string username  = Request.Form["username"];
-            logger.LogInformation("===="+user_id);
             List<Client> clientList= await _context.Client.Where(client=>client.Created_user_id == user_id).ToListAsync();
             
             return clientList;
