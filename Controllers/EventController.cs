@@ -107,14 +107,17 @@ namespace gpcalanderbackenddotnet.Controllers
         }
         [HttpGet]
         [Route("~/findeventsbyuserid")] 
-        public async  Task<ActionResult<List<Event>>> findClientsByUserId([FromQuery(Name = "user_id")] long user_id,[FromQuery(Name = "current_date")] DateOnly current_date){
+        public async  Task<ActionResult<List<Event>>> findEventsByUserId([FromQuery(Name = "user_id")] long user_id,[FromQuery(Name = "current_date")] DateOnly current_date){
            //string username  = Request.Form["username"];
            //https://code-maze.com/aspnetcore-pass-parameters-to-http-get-action/
             DateOnly last_month = current_date.AddMonths(-1);
             DateOnly next_month = current_date.AddMonths(1);
             logger.LogInformation(current_date.ToLongDateString());
-            List<Event> eventList= await _context.Event.Where(cevent=>cevent.Created_user_id == user_id && cevent.Eventdate >=last_month && cevent.Eventdate <= next_month).ToListAsync();
-            
+            //https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager
+            List<Event> eventList= await _context.Event.Where(cevent=>cevent.Created_user_id == user_id && cevent.Eventdate >=last_month && cevent.Eventdate <= next_month)
+            .Include(cevent=>cevent.Client)
+            .Include(cevent=>cevent.Organisation).ToListAsync();
+            logger.LogInformation(eventList[0].Client.Middlename);
             return eventList;
         }
     } 

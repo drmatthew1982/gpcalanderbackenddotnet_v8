@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using ClientApi.Models;
+using OrganisitionApi.Models;
 namespace EventApi.Models;
 
 [Table("events")]
@@ -42,14 +44,19 @@ public class Event
     [NotMapped]
     public string? End  => Eventdate.ToString("yyyy-MM-dd")+"T"+EndTimeStr;
 
-    // public string? Firstname { get; set; }
+    public Client Client { get; set; } = null!; 
+    public Organisation Organisation { get; set; } = null!; 
 
-    // public string? Middlename { get; set; }
+    public string? Firstname { get{return Client.Firstname; }}
 
-    // public string? Lastname { get; set; }
+    public string? Middlename { get{return Client.Middlename; }}
 
-    // public string? Org_code { get; set; }
+    public string? Lastname { get{return  Client.Lastname; } }
 
-    // public string? Org_name { get; set; }
+    public string? Client_id_no { get{return Client.Client_id_no; }}
+
+    public string? Org_code { get{return Organisation.Org_code; }  }
+
+    public string? Org_name { get{return Organisation.Org_name; }  }
 
 }
