@@ -132,12 +132,16 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         [Route("~/updateorg")] 
         public async  Task<IActionResult> updateorg(Organisation organisation){
-                Organisation updatedorg= await _context.Organisation.Where(org=>org.Id == organisation.Id).FirstOrDefaultAsync();
-                updatedorg.Org_name = organisation.Org_name;
-                updatedorg.Modified_time = DateTime.Now;
-                updatedorg.Modified_user_id = organisation.Modified_user_id;
-                await PutOrganisation(updatedorg.Id,updatedorg);
-                return Ok();
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            Organisation updatedorg = await _context.Organisation.Where(org => org.Id == organisation.Id).FirstOrDefaultAsync();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            updatedorg.Org_name = organisation.Org_name;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            updatedorg.Modified_time = DateTime.Now;
+            updatedorg.Modified_user_id = organisation.Modified_user_id;
+            await PutOrganisation(updatedorg.Id,updatedorg);
+            return Ok();
         }
     }
 }

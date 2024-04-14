@@ -134,15 +134,19 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         [Route("~/updateclient")] 
         public async  Task<IActionResult> updateclient(Client client){
-                Client updateclient= await _context.Client.Where(org=>org.Id == client.Id).FirstOrDefaultAsync();
-                updateclient.Firstname = client.Firstname;
-                updateclient.Middlename = client.Middlename;
-                updateclient.Lastname = client.Lastname;
-                updateclient.Birthday = client.Birthday;
-                updateclient.Gender = client.Gender;
-                updateclient.Modified_time = DateTime.Now;
-                updateclient.Modified_user_id = client.Modified_user_id;
-                return await PutClient(updateclient.Id,updateclient);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            Client updateclient = await _context.Client.Where(org => org.Id == client.Id).FirstOrDefaultAsync();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            updateclient.Firstname = client.Firstname;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            updateclient.Middlename = client.Middlename;
+            updateclient.Lastname = client.Lastname;
+            updateclient.Birthday = client.Birthday;
+            updateclient.Gender = client.Gender;
+            updateclient.Modified_time = DateTime.Now;
+            updateclient.Modified_user_id = client.Modified_user_id;
+            return await PutClient(updateclient.Id,updateclient);
         }
     }
 }

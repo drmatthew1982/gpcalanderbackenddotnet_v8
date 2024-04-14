@@ -146,8 +146,11 @@ namespace gpcalanderbackenddotnet.Controllers
         [HttpPost]
         [Route("~/updateevent")] 
         public async  Task<IActionResult> updateeventupdateclient(Event @event){
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             Event updateevent = await _context.Event.Where(org => org.Id == @event.Id).FirstOrDefaultAsync();
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             updateevent.Eventcmt = @event.Eventcmt;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             updateevent.Client_id = @event.Client_id;
             updateevent.Org_id = @event.Org_id;
             updateevent.Assigned_to = @event.Assigned_to;
