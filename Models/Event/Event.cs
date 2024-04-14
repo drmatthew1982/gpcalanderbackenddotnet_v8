@@ -42,21 +42,29 @@ public class Event
     public string? Start => Eventdate.ToString("yyyy-MM-dd") + "T" + StartTimeStr;
 
     [NotMapped]
-    public string? End  => Eventdate.ToString("yyyy-MM-dd")+"T"+EndTimeStr;
+    public string? End => Eventdate.ToString("yyyy-MM-dd") + "T" + EndTimeStr;
 
-    public Client Client { get; set; } = null!; 
-    public Organisation Organisation { get; set; } = null!; 
+    //https://stackoverflow.com/questions/72653957/the-column-name-is-specified-more-than-once-inserting-into-entities-with-1-to-1
+    //[ForeignKey("Client_id")]
+    public virtual  Client? Client { get; set; } = null!;
+    //[ForeignKey("Org_id")]
+    public virtual Organisation? Organisation { get; set; } = null!;
 
-    public string? Firstname { get{return Client.Firstname; }}
+    public string? Firstname { get { return (Client != null) ? Client.Firstname : string.Empty; } }
 
-    public string? Middlename { get{return Client.Middlename; }}
+    public string? Middlename { get { return (Client != null) ? Client.Middlename : string.Empty; } }
 
-    public string? Lastname { get{return  Client.Lastname; } }
+    public string? Lastname { get { return (Client != null) ? Client.Lastname : string.Empty; } }
 
-    public string? Client_id_no { get{return Client.Client_id_no; }}
+    public string? Client_id_no { get { return (Client != null) ? Client.Client_id_no : string.Empty; } }
 
-    public string? Org_code { get{return Organisation.Org_code; }  }
+    public string? Org_code { get { return (Organisation != null) ? Organisation.Org_code : string.Empty; } }
 
-    public string? Org_name { get{return Organisation.Org_name; }  }
+    public string? Org_name { get { return (Organisation != null) ? Organisation.Org_name : string.Empty; } }
+    [Column("startTime")]
+    public TimeSpan StartTimeForSql{ get; set; }
+    [Column("endTime")]   
+    public TimeSpan EndTimeForSql{ get; set; }
+
 
 }

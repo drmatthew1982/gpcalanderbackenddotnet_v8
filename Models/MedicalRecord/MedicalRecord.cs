@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalRecordApi.Models;
 
-[Table("medical_record")]
+[Table("medical_records")]
 public class MedicalRecord
 {
     public long Id { get; set; }
 
-    public string? event_id { get; set; }
+    public long eventid { get; set; }
 
     public string? summary { get; set; }
     

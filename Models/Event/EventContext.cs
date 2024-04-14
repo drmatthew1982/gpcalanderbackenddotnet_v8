@@ -17,14 +17,14 @@ public class EventContext : DbContext
     modelBuilder.Entity<Event>()
         .HasOne(e => e.Client)
         .WithMany(e => e.Events)
-        .HasForeignKey("client_id")
-        .IsRequired();
+        .HasForeignKey("Client_id")
+        .IsRequired(false);
 
      modelBuilder.Entity<Event>()
         .HasOne(e => e.Organisation)
         .WithMany(e => e.Events)
-        .HasForeignKey("org_id")
-        .IsRequired();
+        .HasForeignKey("Org_id")
+        .IsRequired(false);
 }
 
 }
