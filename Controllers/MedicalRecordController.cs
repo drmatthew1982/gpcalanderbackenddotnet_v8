@@ -14,6 +14,7 @@ namespace gpcalanderbackenddotnet.Controllers
     public class MedicalRecordController : ControllerBase
     {
         private readonly MedicalRecordContext _context;
+        ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("gpcalanderbackenddotnet-UserController");
 
         public MedicalRecordController(MedicalRecordContext context)
         {
@@ -102,6 +103,45 @@ namespace gpcalanderbackenddotnet.Controllers
         private bool MedicalRecordExists(long id)
         {
             return _context.MedicalRecord.Any(e => e.Id == id);
+        }
+
+        [HttpGet]
+        [Route("~/findmedicalrecordbyeventid")] 
+        public async  Task<ActionResult<List<MedicalRecord>>> findEventsByUserId([FromQuery(Name = "event_id")] long event_id){
+            List<MedicalRecord> medicalRecordList= 
+                        await _context.MedicalRecord.Where(record=>record.Eventid == event_id).ToListAsync();
+            if(medicalRecordList.Count == 0){
+                MedicalRecord medicalRecord =  new MedicalRecord();
+                medicalRecord.Eventid = event_id;
+                _context.Add(medicalRecord);
+                _context.SaveChanges();
+                medicalRecordList.Add(medicalRecord);
+            }
+            return medicalRecordList;
+        }
+
+        [HttpPost]
+        [Route("~/createmedicalrecord")] 
+        public async  Task<ActionResult<List<MedicalRecord>>> createMedicalRecord(MedicalRecord medicalRecord){
+            medicalRecord.Created_time = DateTime.Now;
+            medicalRecord.Modified_time = DateTime.Now;
+            medicalRecord.Modified_user_id = medicalRecord.Created_user_id;
+            await PostMedicalRecord(medicalRecord);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("~/updatemedicalrecord")] 
+        public async  Task<ActionResult<List<MedicalRecord>>> updateMedicalRecord(MedicalRecord medicalRecord){
+
+            MedicalRecord updateMedicalRecord = 
+                        await _context.MedicalRecord.Where(record=>record.Id == medicalRecord.Id).FirstOrDefaultAsync();
+            updateMedicalRecord.Summary = medicalRecord.Summary;
+            updateMedicalRecord.Positions = medicalRecord.Positions;
+            updateMedicalRecord.Modified_user_id = medicalRecord.Modified_user_id;
+            updateMedicalRecord.Modified_time = DateTime.Now;
+            await PutMedicalRecord(updateMedicalRecord.Id,updateMedicalRecord);
+            return Ok();
         }
     }
 }

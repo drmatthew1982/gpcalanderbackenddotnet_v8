@@ -6,11 +6,11 @@ public class MedicalRecord
 {
     public long Id { get; set; }
 
-    public long eventid { get; set; }
+    public long Eventid { get; set; }
 
-    public string? summary { get; set; }
+    public string? Summary { get; set; }
     
-    public string? positions { get; set; }
+    public string? Positions { get; set; }
     
     public long Created_user_id { get; set; }
 

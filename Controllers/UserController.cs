@@ -149,7 +149,11 @@ namespace gpcalanderbackenddotnet.Controllers
            //https://code-maze.com/aspnetcore-pass-parameters-to-http-get-action/
             
             var user = await _context.User.Where(user=>user.Username == username).FirstOrDefaultAsync();
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
             return user.Seckey;
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
 
     

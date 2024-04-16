@@ -133,10 +133,10 @@ namespace gpcalanderbackenddotnet.Controllers
             await PostEvent(@event);
             logger.LogInformation("@Event_id after:" + @event.Id);
             List<MedicalRecord> medicalRecordList = await _medicalRecordContext.MedicalRecord.
-                                    Where(medicalRecord => medicalRecord.eventid == @event.Id).ToListAsync();
+                                    Where(medicalRecord => medicalRecord.Eventid == @event.Id).ToListAsync();
             if(medicalRecordList.Count==0){
                 MedicalRecord medicalRecord =  new MedicalRecord();
-                medicalRecord.eventid = @event.Id;
+                medicalRecord.Eventid = @event.Id;
                 _medicalRecordContext.Add(medicalRecord);
                 await _medicalRecordContext.SaveChangesAsync();
             }
